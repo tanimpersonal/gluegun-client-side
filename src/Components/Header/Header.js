@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import gun from "../../Assets/Images/glue-gun.png";
 const Header = () => {
   const firstStyle = {
@@ -83,12 +84,13 @@ const Header = () => {
 
             <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
               <li className="nav-item p-2">
-                <a
+                <Link
+                  to="/register"
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
                   href="#"
                 >
-                  Dashboard
-                </a>
+                  Register
+                </Link>
               </li>
               <li className="nav-item p-2">
                 <a
