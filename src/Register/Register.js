@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
+import { Link } from "react-router-dom";
 const Register = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const {
     register,
     handleSubmit,
@@ -10,10 +14,12 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    createUserWithEmailAndPassword(data.email, data.password);
   };
+  console.log(user);
   return (
     <div className="flex justify-center my-5">
-      <h1 className="">Login</h1>
+      <h1 className="">Register</h1>
       <div className="login">
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,6 +81,7 @@ const Register = () => {
                 placeholder="Password"
               />
             </div>
+            <p>{error && `${error}`}</p>
             <div className="flex justify-between items-center mb-6">
               <a
                 href="#!"
@@ -104,16 +111,17 @@ const Register = () => {
       duration-150
       ease-in-out"
             >
-              Sign in
+              Register
             </button>
             <p className="text-gray-800 mt-6 text-center">
-              Not a member?{" "}
-              <a
+              Already a member?
+              <Link
+                to="/login"
                 href="#!"
                 className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
               >
-                Register
-              </a>
+                Login
+              </Link>
             </p>
           </form>
         </div>
