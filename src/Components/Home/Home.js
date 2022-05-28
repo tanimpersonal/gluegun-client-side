@@ -2,6 +2,7 @@ import React from "react";
 import banner from "../../Assets/Images/glue-gun-banner.jpg";
 import SingleTool from "../../SingleTool/SingleTool";
 import Summary from "../../Summary/Summary";
+import Testimonial from "../../Testimonial/Testimonial";
 import useTools from "../../Utility/useTools";
 const Home = () => {
   const [tools] = useTools();
@@ -23,6 +24,9 @@ const Home = () => {
       </div>
       <div className="summary">
         <Summary></Summary>
+      </div>
+      <div className="testimonial">
+        <Testimonial></Testimonial>
       </div>
     </div>
   );
