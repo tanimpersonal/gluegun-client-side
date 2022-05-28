@@ -1,3 +1,4 @@
+import "tw-elements";
 function App() {
   return <div></div>;
 }
