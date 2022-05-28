@@ -1,20 +1,26 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import { Link } from "react-router-dom";
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating] = useUpdateProfile(auth);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    createUserWithEmailAndPassword(data.email, data.password);
+    await createUserWithEmailAndPassword(data.email, data.password);
+    const displayName = data.name;
+    updateProfile({ displayName });
   };
   console.log(user);
   return (
@@ -31,7 +37,7 @@ const Register = () => {
                 Email address
               </label>
               <input
-                {...register("email")}
+                {...register("email", { required: true })}
                 type="email"
                 className="form-control
         block
@@ -55,6 +61,35 @@ const Register = () => {
             </div>
             <div className="form-group mb-6">
               <label
+                htmlFor="exampleInputName2"
+                className="form-label inline-block mb-2 text-gray-700"
+              >
+                Name
+              </label>
+              <input
+                {...register("name", { required: true })}
+                type="text"
+                className="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="exampleInputName2"
+                placeholder="Enter Name"
+              />
+            </div>
+            <div className="form-group mb-6">
+              <label
                 htmlFor="exampleInputPassword2"
                 className="form-label inline-block mb-2 text-gray-700"
               >
@@ -62,7 +97,7 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                {...register("password")}
+                {...register("password", { required: true })}
                 className="form-control block
         w-full
         px-3

@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SingleTool = ({ tool }) => {
   console.log(tool);
+  const navigate = useNavigate();
+  const navigator = (_id) => {
+    navigate(`/purchase/${_id}`);
+  };
   return (
     <div>
       <div className="flex justify-center">
@@ -18,14 +22,14 @@ const SingleTool = ({ tool }) => {
             <p>Available Quantity: {tool.available_quantity}</p>
             <p>Price per unit; ${tool.price}</p>
             <p>Minimum Order Quantity: {tool.minimum_order_quantity}</p>
-            <Link to="/purchase">
-              <button
-                type="button"
-                className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Buy Now
-              </button>
-            </Link>
+
+            <button
+              onClick={() => navigator(tool._id)}
+              type="button"
+              className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Buy Now
+            </button>
           </div>
         </div>
       </div>
