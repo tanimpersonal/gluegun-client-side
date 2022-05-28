@@ -1,6 +1,9 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import gun from "../../Assets/Images/glue-gun.png";
+import auth from "../../firebase.init";
 const Header = () => {
   const firstStyle = {
     height: "50px",
@@ -8,6 +11,11 @@ const Header = () => {
   const secondStyle = {
     height: "25px",
     width: "25px",
+  };
+  const [user, loading, error] = useAuthState(auth);
+  const handleLogOut = (event) => {
+    event.preventDefault();
+    signOut(auth);
   };
   return (
     <div>
@@ -101,14 +109,17 @@ const Header = () => {
                   Login
                 </Link>
               </li>
-              <li className="nav-item p-2">
-                <a
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  href="#"
-                >
-                  Projects
-                </a>
-              </li>
+              {user && (
+                <li className="nav-item p-2">
+                  <button
+                    onClick={handleLogOut}
+                    className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                    href="#"
+                  >
+                    LogOut
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
