@@ -1,3 +1,10 @@
+import {
+  BeakerIcon,
+  UserGroupIcon,
+  CakeIcon,
+  LocationMarkerIcon,
+} from "@heroicons/react/solid";
+
 import React from "react";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
@@ -6,13 +13,20 @@ const Summary = () => {
     <div className="grid lg:grid-cols-3 my-5">
       <div class="flex justify-center">
         <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center">
-          <div class="py-3 px-6 border-b border-gray-300">Customer</div>
+          <div class="py-3 px-6 border-b border-gray-300">
+            Customer<UserGroupIcon className="w-72"></UserGroupIcon>
+          </div>
           <div class="p-6">
             <VisibilitySensor partialVisibility offset={{ bottom: 100 }}>
               {({ isVisible }) => (
                 <div style={{ height: 50 }}>
                   {isVisible ? (
-                    <CountUp className="text-3xl" end={1000} suffix="+" />
+                    <CountUp
+                      className="text-3xl"
+                      end={1000}
+                      suffix="+"
+                      redraw={false}
+                    />
                   ) : null}
                 </div>
               )}
@@ -25,7 +39,9 @@ const Summary = () => {
       </div>
       <div class="flex justify-center">
         <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center">
-          <div class="py-3 px-6 border-b border-gray-300">Order Delivered</div>
+          <div class="py-3 px-6 border-b border-gray-300">
+            Order Delivered <CakeIcon className="w-72"></CakeIcon>
+          </div>
           <div class="p-6">
             <VisibilitySensor partialVisibility offset={{ bottom: 100 }}>
               {({ isVisible }) => (
@@ -36,6 +52,7 @@ const Summary = () => {
                       start={1000}
                       end={2000}
                       suffix="+"
+                      redraw={false}
                     />
                   ) : null}
                 </div>
@@ -49,13 +66,21 @@ const Summary = () => {
       </div>
       <div class="flex justify-center">
         <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center">
-          <div class="py-3 px-6 border-b border-gray-300">Office Location</div>
+          <div class="py-3 px-6 border-b border-gray-300">
+            Office Location
+            <LocationMarkerIcon className="w-72"></LocationMarkerIcon>
+          </div>
           <div class="p-6">
             <VisibilitySensor partialVisibility offset={{ bottom: 100 }}>
               {({ isVisible }) => (
                 <div style={{ height: 50 }}>
                   {isVisible ? (
-                    <CountUp className="text-3xl" end={50} suffix="+" />
+                    <CountUp
+                      className="text-3xl"
+                      redraw="false"
+                      end={50}
+                      suffix="+"
+                    />
                   ) : null}
                 </div>
               )}
