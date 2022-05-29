@@ -2,6 +2,7 @@ import React from "react";
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +13,8 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [loggedUser, loggedLoading] = useAuthState(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const {
@@ -25,10 +28,10 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password);
     //   (data.email, data.password);
   };
-  if (loggedUser) {
+  if (loggedUser || googleUser) {
     navigate(from, { replace: true });
   }
-  if (loggedLoading) {
+  if (loggedLoading || googleLoading) {
     return <p>Loading...</p>;
   }
   console.log(user);
@@ -98,6 +101,7 @@ const Login = () => {
                 />
               </div>
               <p>{error && `${error}`}</p>
+              <p>{googleError && `${googleError}`}</p>
               <div className="flex justify-between items-center mb-6">
                 <a
                   href="#!"
@@ -129,6 +133,18 @@ const Login = () => {
               >
                 Login
               </button>
+              <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
+                <p className="text-center font-semibold mx-4 mb-0">OR</p>
+              </div>
+              <div className="google-signin flex justify-center btn">
+                <button
+                  onClick={() => signInWithGoogle()}
+                  type="button"
+                  className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                >
+                  Sign In With Google
+                </button>
+              </div>
               <p className="text-gray-800 mt-6 text-center">
                 Not a member?
                 <Link

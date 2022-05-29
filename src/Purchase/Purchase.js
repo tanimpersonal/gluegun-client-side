@@ -1,13 +1,22 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
+import ContactForm from "../ContactForm/ContactForm";
 import auth from "../firebase.init";
 import useTools from "../Utility/useTools";
 
 const Purchase = () => {
-  const [tools] = useTools();
+  //   const [tools] = useTools();
   const { id } = useParams();
-  const filterTool = tools.find((tool) => tool._id == id);
+  const [filterTool, setFilterTool] = useState({});
+  useEffect(() => {
+    axios(`http://localhost:5000/tools/${id}`).then((data) =>
+      setFilterTool(data.data)
+    );
+  }, []);
+
+  //   const filterTool = tools.find((tool) => tool._id == id);
   console.log(filterTool);
   const [user, loading, error] = useAuthState(auth);
   return (
@@ -27,12 +36,6 @@ const Purchase = () => {
             <p>Available Quantity: {filterTool?.available_quantity}</p>
             <p>Price per unit; ${filterTool?.price}</p>
             <p>Minimum Order Quantity: {filterTool?.minimum_order_quantity}</p>
-            <button
-              type="button"
-              className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-            >
-              Purchase
-            </button>
           </div>
         </div>
       </div>
@@ -47,6 +50,10 @@ const Purchase = () => {
           <h5 class="text-xl font-medium leading-tight mb-2">{user.email}</h5>
           <p class="text-gray-500">{user.displayName}</p>
         </div>
+      </div>
+      <div className="contact-form">
+        <div className="form-header">Fill Up The Form To Place Order</div>
+        <ContactForm filterTool={filterTool}></ContactForm>
       </div>
     </div>
   );

@@ -5,22 +5,34 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if (user) {
+    navigate(from, { replace: true });
+  }
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
+  if (loading || updating) {
+    return <p>Loading..</p>;
+  }
+
   const onSubmit = async (data) => {
     console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
-    const displayName = data.name;
-    updateProfile({ displayName });
+    const displayName = await data.name;
+    await updateProfile({ displayName });
   };
   console.log(user);
   return (

@@ -1,6 +1,9 @@
 import React from "react";
+import useTestimonial from "../useTestimonial/useTestimonial";
 
 const Testimonial = () => {
+  const [testimonial] = useTestimonial();
+  console.log(testimonial);
   return (
     <div>
       <section class="mb-20 text-gray-700 px-4">
@@ -9,33 +12,21 @@ const Testimonial = () => {
         </div>
 
         <div class="grid md:grid-cols-2 gap-12 text-center">
-          <div class="mb-6 md:mb-0">
-            <div class="flex justify-center mb-6">
-              <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(22).jpg"
-                class="rounded-full shadow-lg w-24"
-                alt=""
-              />
-            </div>
-            <p class="text-xl my-4 text-gray-500">
-              I'm very happy to get my glue gun from them. It's highly working
-            </p>
-            <p class="italic">- Anna Morian</p>
-          </div>
-          <div class="mb-0">
-            <div class="flex justify-center mb-6">
-              <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(19).jpg"
-                class="rounded-full shadow-lg w-24"
-                alt=""
-              />
-            </div>
-            <p class="text-xl my-4 text-gray-500">
-              I'm very happy to get my glue gun from them. It's highly working.
-              It's electricity cost is lower and also child friendly
-            </p>
-            <p class="italic">- Teresa May</p>
-          </div>
+          {testimonial.map((testimonial) => {
+            return (
+              <div class="mb-6 md:mb-0">
+                <div class="flex justify-center mb-6">
+                  <img
+                    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(22).jpg"
+                    class="rounded-full shadow-lg w-24"
+                    alt=""
+                  />
+                </div>
+                <p class="text-xl my-4 text-gray-500">{testimonial.review}</p>
+                <p class="italic">- {testimonial.user}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>

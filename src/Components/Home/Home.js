@@ -1,11 +1,15 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import banner from "../../Assets/Images/glue-gun-banner.jpg";
 import SingleTool from "../../SingleTool/SingleTool";
 import Summary from "../../Summary/Summary";
 import Testimonial from "../../Testimonial/Testimonial";
 import useTools from "../../Utility/useTools";
 const Home = () => {
-  const [tools] = useTools();
+  const [tools, setTools] = useState([]);
+  useEffect(() => {
+    axios("http://localhost:5000/tools/").then((data) => setTools(data.data));
+  }, []);
   console.log(tools);
   return (
     <div>
