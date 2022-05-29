@@ -1,28 +1,46 @@
 import axios from "axios";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "react-query";
 import auth from "../firebase.init";
 
 const MyProfile = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const education = useRef();
   const city = useRef();
+
   const phone = useRef();
-  const handleUpdateUser = (event) => {
+  const [userDetail, setUserDetail] = useState({});
+  useEffect(() => {
+    axios(`http://localhost:5000/users/${user.email}`).then((data) =>
+      setUserDetail(data.data)
+    );
+  }, [user.email]);
+  if (loading) {
+    return <p>Loading..</p>;
+  }
+  const handleUpdateUser = async (event) => {
     event.preventDefault();
-    axios.put(`http://localhost:5000/users?email=${user.email}`, {
+    await axios.put(`http://localhost:5000/users?email=${user.email}`, {
       name: user.displayName,
       email: user.email,
       city: city.current.value,
       education: education.current.value,
       phone: phone.current.value,
     });
+    await axios(`http://localhost:5000/users/${user.email}`).then((data) =>
+      setUserDetail(data.data)
+    );
   };
+  console.log(userDetail);
   return (
     <div>
       <div className="name-email">
         <p> Name: {user.displayName}</p>
         <p>Email: {user.email}</p>
+        <p>Education:{userDetail.details?.education}</p>
+        <p>City:{userDetail.details?.city}</p>
+        <p>Phone:{userDetail.details?.phone}</p>
         <div className="form flex justify-center">
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form onSubmit={handleUpdateUser}>
