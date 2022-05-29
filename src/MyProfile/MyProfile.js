@@ -12,8 +12,8 @@ const MyProfile = () => {
   const phone = useRef();
   const [userDetail, setUserDetail] = useState({});
   useEffect(() => {
-    axios(`http://localhost:5000/users/${user.email}`).then((data) =>
-      setUserDetail(data.data)
+    axios(`https://assignment-12-tanim.herokuapp.com/users/${user.email}`).then(
+      (data) => setUserDetail(data.data)
     );
   }, [user.email]);
   if (loading) {
@@ -21,16 +21,19 @@ const MyProfile = () => {
   }
   const handleUpdateUser = async (event) => {
     event.preventDefault();
-    await axios.put(`http://localhost:5000/users?email=${user.email}`, {
-      name: user.displayName,
-      email: user.email,
-      city: city.current.value,
-      education: education.current.value,
-      phone: phone.current.value,
-    });
-    await axios(`http://localhost:5000/users/${user.email}`).then((data) =>
-      setUserDetail(data.data)
+    await axios.put(
+      `https://assignment-12-tanim.herokuapp.com/users?email=${user.email}`,
+      {
+        name: user.displayName,
+        email: user.email,
+        city: city.current.value,
+        education: education.current.value,
+        phone: phone.current.value,
+      }
     );
+    await axios(
+      `https://assignment-12-tanim.herokuapp.com/users/${user.email}`
+    ).then((data) => setUserDetail(data.data));
   };
   console.log(userDetail);
   return (

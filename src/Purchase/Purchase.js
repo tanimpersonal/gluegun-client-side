@@ -11,8 +11,8 @@ const Purchase = () => {
   const { id } = useParams();
   const [filterTool, setFilterTool] = useState({});
   useEffect(() => {
-    axios(`http://localhost:5000/tools/${id}`).then((data) =>
-      setFilterTool(data.data)
+    axios(`https://assignment-12-tanim.herokuapp.com/tools/${id}`).then(
+      (data) => setFilterTool(data.data)
     );
   }, []);
 

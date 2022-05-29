@@ -35,7 +35,7 @@ const ContactForm = ({ filterTool }) => {
       const total = filterTool.price * quantity;
 
       console.log(total);
-      await axios.post("http://localhost:5000/orders", {
+      await axios.post("https://assignment-12-tanim.herokuapp.com/orders", {
         name: user.displayName,
         email: user.email,
         orderId: filterTool._id,
@@ -44,9 +44,12 @@ const ContactForm = ({ filterTool }) => {
         total: total,
       });
       const availableQuantity = filterTool.available_quantity - quantity;
-      await axios.put(`http://localhost:5000/tools/${filterTool._id}`, {
-        available_quantity: availableQuantity,
-      });
+      await axios.put(
+        `https://assignment-12-tanim.herokuapp.com/tools/${filterTool._id}`,
+        {
+          available_quantity: availableQuantity,
+        }
+      );
     }
   };
   return (

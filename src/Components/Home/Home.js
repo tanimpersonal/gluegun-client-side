@@ -8,7 +8,9 @@ import useTools from "../../Utility/useTools";
 const Home = () => {
   const [tools, setTools] = useState([]);
   useEffect(() => {
-    axios("http://localhost:5000/tools/").then((data) => setTools(data.data));
+    axios("https://assignment-12-tanim.herokuapp.com/tools/").then((data) =>
+      setTools(data.data)
+    );
   }, []);
   console.log(tools);
   return (

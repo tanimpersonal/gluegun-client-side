@@ -23,7 +23,7 @@ const AddReview = () => {
         draggable: true,
         progress: undefined,
       });
-      axios.post("http://localhost:5000/testimonials", {
+      axios.post("https://assignment-12-tanim.herokuapp.com/testimonials", {
         rating: rating.current.value,
         user: user.displayName,
         review: review.current.value,

@@ -7,9 +7,9 @@ const MyOrder = () => {
   const [order, setOrder] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
-    axios(`http://localhost:5000/orders/${user.email}`).then((data) =>
-      setOrder(data.data)
-    );
+    axios(
+      `https://assignment-12-tanim.herokuapp.com/orders/${user.email}`
+    ).then((data) => setOrder(data.data));
   }, []);
   return (
     <div>
