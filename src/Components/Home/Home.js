@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import banner from "../../Assets/Images/glue-gun-banner.jpg";
 import SingleTool from "../../SingleTool/SingleTool";
 import Summary from "../../Summary/Summary";
@@ -14,7 +15,7 @@ const Home = () => {
       setTools(data.data)
     );
   }, []);
-  console.log(tools);
+
   return (
     <div>
       <div className="banner">

@@ -111,7 +111,7 @@ const ContactForm = ({ filterTool, setFilterTool }) => {
           </div>
           <div className="form-group mb-6">
             <input
-              type="text"
+              type="number"
               value={quantity}
               ref={quantityValue}
               onChange={handleChange}

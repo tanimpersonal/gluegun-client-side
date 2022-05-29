@@ -2,8 +2,8 @@ import React from "react";
 import useTestimonial from "../useTestimonial/useTestimonial";
 import { Rating } from "react-simple-star-rating";
 const Testimonial = () => {
-  const [testimonial] = useTestimonial();
-  console.log(testimonial);
+  const [data] = useTestimonial();
+  console.log(data);
   return (
     <div>
       <section class="mb-20 text-gray-700 px-4">
@@ -12,7 +12,7 @@ const Testimonial = () => {
         </div>
 
         <div class="grid md:grid-cols-2 gap-12 text-center">
-          {testimonial.map((testimonial) => {
+          {data?.map((testimonial) => {
             return (
               <div class="mb-6 md:mb-0">
                 <div class="flex justify-center mb-6">
