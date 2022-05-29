@@ -14,6 +14,7 @@ import AddReview from "./AddReview/AddReview";
 import MyProfile from "./MyProfile/MyProfile";
 import Blogs from "./Blogs/Blogs";
 import MyPortfolio from "./MyPortfolio/MyPortfolio";
+import NotFound from "./NotFound/NotFound";
 function App() {
   return (
     <div>
@@ -44,7 +45,7 @@ function App() {
         </Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
-        <Route path="/portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
 
       <Footer></Footer>
