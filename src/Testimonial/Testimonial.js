@@ -1,6 +1,6 @@
 import React from "react";
 import useTestimonial from "../useTestimonial/useTestimonial";
-
+import { Rating } from "react-simple-star-rating";
 const Testimonial = () => {
   const [testimonial] = useTestimonial();
   console.log(testimonial);
@@ -23,6 +23,14 @@ const Testimonial = () => {
                   />
                 </div>
                 <p class="text-xl my-4 text-gray-500">{testimonial.review}</p>
+
+                <Rating
+                  style={{ display: "block" }}
+                  readonly
+                  iconsCount={parseInt(testimonial.rating)}
+                  initialValue={parseInt(testimonial.rating)}
+                />
+
                 <p class="italic">- {testimonial.user}</p>
               </div>
             );
