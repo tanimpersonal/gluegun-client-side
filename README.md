@@ -12,6 +12,7 @@
 - React Router
 - React Query
 - Firebase
+- React Counter
 
 # Features
 
