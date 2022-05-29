@@ -81,7 +81,8 @@ const Header = () => {
             className="collapse navbar-collapse flex-grow items-center"
             id="navbarSupportedContent"
           >
-            <a
+            <Link
+              to="/"
               className="
         flex
         items-center
@@ -92,30 +93,32 @@ const Header = () => {
         lg:mt-0
         mr-1
       "
-              href="#"
             >
               <img src={gun} style={firstStyle} alt="" loading="lazy" />
-            </a>
+            </Link>
 
             <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-              <li className="nav-item p-2">
-                <Link
-                  to="/register"
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  href="#"
-                >
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item p-2">
-                <Link
-                  to="/login"
-                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                  href="#"
-                >
-                  Login
-                </Link>
-              </li>
+              {!user && (
+                <li className="nav-item p-2">
+                  <Link
+                    to="/register"
+                    className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                  >
+                    Register
+                  </Link>
+                </li>
+              )}
+              {!user && (
+                <li className="nav-item p-2">
+                  <Link
+                    to="/login"
+                    className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                    href="#"
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 

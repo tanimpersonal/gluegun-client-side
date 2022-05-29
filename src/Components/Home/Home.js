@@ -4,6 +4,7 @@ import banner from "../../Assets/Images/glue-gun-banner.jpg";
 import SingleTool from "../../SingleTool/SingleTool";
 import Summary from "../../Summary/Summary";
 import Testimonial from "../../Testimonial/Testimonial";
+import TopBrands from "../../TopBrands/TopBrands";
 import useTools from "../../Utility/useTools";
 const Home = () => {
   const [tools, setTools] = useState([]);
@@ -30,6 +31,14 @@ const Home = () => {
       </div>
       <div className="summary">
         <Summary></Summary>
+      </div>
+      <div className="top-brands">
+        <div className="header-top-brand">
+          <h1 className="text-3xl flex justify-center">Top Brands</h1>
+        </div>
+        <div className="brands">
+          <TopBrands></TopBrands>
+        </div>
       </div>
       <div className="testimonial">
         <Testimonial></Testimonial>
