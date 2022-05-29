@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../firebase.init";
 
-const ContactForm = ({ filterTool }) => {
+const ContactForm = ({ filterTool, setFilterTool }) => {
   const [user, loading, error] = useAuthState(auth);
 
   const [quantity, setQuantity] = useState(filterTool.minimum_order_quantity);
+
   const quantityValue = useRef("");
   console.log(filterTool);
   const handleChange = (e) => {
@@ -50,6 +51,9 @@ const ContactForm = ({ filterTool }) => {
           available_quantity: availableQuantity,
         }
       );
+      await axios(
+        `https://assignment-12-tanim.herokuapp.com/tools/${filterTool._id}`
+      ).then((data) => setFilterTool(data.data));
     }
   };
   return (

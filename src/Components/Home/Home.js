@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import banner from "../../Assets/Images/glue-gun-banner.jpg";
 import SingleTool from "../../SingleTool/SingleTool";
 import Summary from "../../Summary/Summary";
+import Support from "../../Support/Support";
 import Testimonial from "../../Testimonial/Testimonial";
 import TopBrands from "../../TopBrands/TopBrands";
 import useTools from "../../Utility/useTools";
@@ -19,6 +20,7 @@ const Home = () => {
       <div className="banner">
         <img src={banner} className="max-w-full w-screen h-auto" alt="..." />
       </div>
+
       <div className="tools">
         <div className="tools-header flex justify-center my-5">
           <h1 className="text-4xl">Tools</h1>
@@ -29,6 +31,9 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <div className="business-perspective">
+        <Support></Support>
+      </div>
       <div className="summary">
         <Summary></Summary>
       </div>
@@ -36,10 +41,12 @@ const Home = () => {
         <div className="header-top-brand">
           <h1 className="text-3xl flex justify-center">Top Brands</h1>
         </div>
+
         <div className="brands">
           <TopBrands></TopBrands>
         </div>
       </div>
+
       <div className="testimonial">
         <Testimonial></Testimonial>
       </div>

@@ -53,7 +53,10 @@ const Purchase = () => {
       </div>
       <div className="contact-form">
         <div className="form-header">Fill Up The Form To Place Order</div>
-        <ContactForm filterTool={filterTool}></ContactForm>
+        <ContactForm
+          filterTool={filterTool}
+          setFilterTool={setFilterTool}
+        ></ContactForm>
       </div>
     </div>
   );
