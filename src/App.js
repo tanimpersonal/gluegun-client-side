@@ -12,6 +12,8 @@ import Dashboard from "./Dashboard/Dashboard";
 import MyOrder from "./MyOrder/MyOrder";
 import AddReview from "./AddReview/AddReview";
 import MyProfile from "./MyProfile/MyProfile";
+import Blogs from "./Blogs/Blogs";
+import MyPortfolio from "./MyPortfolio/MyPortfolio";
 function App() {
   return (
     <div>
@@ -40,6 +42,9 @@ function App() {
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
           <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
         </Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
+        <Route path="/portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
       </Routes>
 
       <Footer></Footer>
