@@ -3,7 +3,7 @@ import React from "react";
 const Support = () => {
   return (
     <div>
-      <div className="main flex gap-5 px-10 my-3 bg-blue-500 py-14">
+      <div className="main flex flex-wrap gap-5 px-10 my-3 bg-blue-500 py-14">
         <div className="product">
           <h3 className="text-3xl">ORIGINAL PRODUCTS</h3>
           <p>We always sell authentic original products to our customers</p>
