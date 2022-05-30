@@ -14,7 +14,7 @@ const Testimonial = () => {
         <div class="grid md:grid-cols-2 gap-12 text-center">
           {data?.map((testimonial) => {
             return (
-              <div class="mb-6 md:mb-0">
+              <div key={data._id} class="mb-6 md:mb-0">
                 <div class="flex justify-center mb-6">
                   <img
                     src="https://mdbootstrap.com/img/Photos/Avatars/img%20(22).jpg"

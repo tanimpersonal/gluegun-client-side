@@ -7,18 +7,18 @@ import auth from "../firebase.init";
 
 const ContactForm = ({ filterTool, setFilterTool }) => {
   const [user, loading, error] = useAuthState(auth);
-
   const [quantity, setQuantity] = useState(filterTool.minimum_order_quantity);
 
   const quantityValue = useRef("");
   console.log(filterTool);
+  console.log(quantity);
   const handleChange = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
   const handleOrder = async (event) => {
     event.preventDefault();
-    console.log(quantityValue.current.value);
+
     if (
       parseInt(quantityValue.current.value) > filterTool.available_quantity ||
       parseInt(quantityValue.current.value) < filterTool.minimum_order_quantity

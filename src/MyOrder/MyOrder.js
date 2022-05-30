@@ -56,7 +56,7 @@ const MyOrder = () => {
                 <tbody>
                   {order.map((order) => {
                     return (
-                      <tr className="border-b">
+                      <tr key={order._id} className="border-b">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {order.productName}
                         </td>

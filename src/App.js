@@ -15,6 +15,9 @@ import MyProfile from "./MyProfile/MyProfile";
 import Blogs from "./Blogs/Blogs";
 import MyPortfolio from "./MyPortfolio/MyPortfolio";
 import NotFound from "./NotFound/NotFound";
+import AdminRegister from "./AdminRegister/AdminRegister";
+import AllOrder from "./AllOrder/AllOrder";
+import AddTools from "./AddTools/AddTools";
 function App() {
   return (
     <div>
@@ -29,6 +32,8 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="/admin" element={<AdminRegister />}></Route>
+
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route
@@ -40,7 +45,9 @@ function App() {
           }
         >
           <Route path="my-orders" element={<MyOrder></MyOrder>}></Route>
+          <Route path="all-orders" element={<AllOrder></AllOrder>}></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
+          <Route path="add-tools" element={<AddTools></AddTools>}></Route>
           <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
         </Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
