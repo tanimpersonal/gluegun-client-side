@@ -8,7 +8,7 @@ import auth from "../firebase.init";
 const ContactForm = ({ filterTool, setFilterTool }) => {
   const [user, loading, error] = useAuthState(auth);
   const [quantity, setQuantity] = useState(filterTool.minimum_order_quantity);
-
+  const address = useRef("");
   const quantityValue = useRef("");
   console.log(filterTool);
   console.log(quantity);
@@ -40,6 +40,7 @@ const ContactForm = ({ filterTool, setFilterTool }) => {
         name: user.displayName,
         email: user.email,
         orderId: filterTool._id,
+        address: address.current.value,
         productName: filterTool.name,
         quantity: quantity,
         total: total,
@@ -91,6 +92,29 @@ const ContactForm = ({ filterTool, setFilterTool }) => {
               value={user.email}
               readOnly
               disabled
+              className="form-control block
+           
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="exampleInput8"
+            />
+          </div>
+          <div className="form-group mb-6">
+            <input
+              type="text"
+              ref={address}
+              placeholder="Address"
               className="form-control block
            
         w-full
