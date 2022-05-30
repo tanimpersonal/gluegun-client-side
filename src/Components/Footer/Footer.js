@@ -144,11 +144,7 @@ const Footer = () => {
                 </svg>
                 GLUEGUN
               </h6>
-              <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
-              </p>
+              <p>GlueGun is a website where you can find all good GlueGuns</p>
             </div>
             <div className="">
               <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
