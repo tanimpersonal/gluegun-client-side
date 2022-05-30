@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import {
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
@@ -10,22 +11,21 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
+  const [loggedUser, loggedLoading] = useAuthState(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  if (user) {
-    navigate(from, { replace: true });
-  }
-
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-
-  if (loading || updating) {
+  if (loading || updating || loggedLoading) {
     return <p>Loading..</p>;
+  }
+  if (loggedUser || user) {
+    navigate(from, { replace: true });
   }
 
   const onSubmit = async (data) => {

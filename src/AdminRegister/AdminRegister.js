@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import {
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 
 const AdminRegister = () => {
@@ -12,6 +14,7 @@ const AdminRegister = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
+
   const handleAdmin = async (e) => {
     e.preventDefault();
     await createUserWithEmailAndPassword(

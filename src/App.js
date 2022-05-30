@@ -18,6 +18,8 @@ import NotFound from "./NotFound/NotFound";
 import AdminRegister from "./AdminRegister/AdminRegister";
 import AllOrder from "./AllOrder/AllOrder";
 import AddTools from "./AddTools/AddTools";
+import RequireAdminAuth from "./RequireAdminAuth/RequireAdminAuth";
+import AdminLogin from "./AdminLogin/AdminLogin";
 function App() {
   return (
     <div>
@@ -33,6 +35,7 @@ function App() {
           }
         ></Route>
         <Route path="/admin" element={<AdminRegister />}></Route>
+        <Route path="/admin-login" element={<AdminLogin></AdminLogin>}></Route>
 
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
@@ -45,7 +48,14 @@ function App() {
           }
         >
           <Route path="my-orders" element={<MyOrder></MyOrder>}></Route>
-          <Route path="all-orders" element={<AllOrder></AllOrder>}></Route>
+          <Route
+            path="all-orders"
+            element={
+              <RequireAdminAuth>
+                <AllOrder></AllOrder>
+              </RequireAdminAuth>
+            }
+          ></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
           <Route path="add-tools" element={<AddTools></AddTools>}></Route>
           <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
